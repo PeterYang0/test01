@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<style>
+	*{
+		margin:0;padding:0; 
+	}
+	input{
+		width: 60px;
+		height: 40px;
+	}
+	body{
+		background-image:url(img2/7.jpg);
+		background-size: cover;
+	}
+	    #div3{
+	    	width: 130px;
+	    	height: 45px;
+	    	margin:50px auto;
+	    }
+        #div1 img{
+			width: 30px;
+			height: 30px;
+        }
+        #div1{
+        	width: 350px;
+        	height: 70px;
+        	margin: 50px auto;
+        }
+        #div2{
+        	width: 900px;
+        	height: 145px;
+        	margin: 50px auto;
+        	position: relative;
+        	overflow: hidden;
+        }
+        #div2 ul{
+        	position: absolute;
+        	left:0;
+        	top:0;
+        	width: 1800px;
+        	height: 145px;
+
+        }
+        #div2 img{
+        	width: 180px;
+        	height: 145px; 
+        }
+        #div2 ul li{
+        	float: left;
+        	list-style: none;
+        }
+	</style>
+	<script>
+	    function toDou(n){
+	    	if (n<10) {
+	    		return '0'+n;
+	    	}
+	    	else{
+	    		return ''+n;
+	    	}
+	    }
+        window.onload=function(){
+		var oImg=document.getElementsByTagName('img');
+		function clock(){
+			var oDate=new Date();
+			var str=toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds());
+			for (var i = 0; i < 6; i++) {
+				oImg[i].src='img/'+str[i]+'.jpg';
+			}
+		}
+		setInterval(clock,1000);
+		clock();
+
+
+		var div2=document.getElementById('div2')
+		var ul=document.getElementsByTagName('ul')[0];
+		var li=ul.getElementsByTagName('li');
+		var speed=-2;
+		var timer=setInterval(move,30);
+		var btn1=document.getElementById('btn1');
+		var btn2=document.getElementById('btn2');
+		
+		function move(){
+			ul.style.left=ul.offsetLeft+speed+'px';
+			if(ul.offsetLeft<-ul.offsetWidth/2){
+			ul.style.left='0';
+			}
+			if(ul.offsetLeft>0){
+				ul.style.left=-ul.offsetWidth/2+'px';
+			}
+		}
+
+		div2.onmouseover=function(){
+			clearTimeout(timer);
+		}
+		div2.onmouseout=function(){
+			timer=setInterval(move,30);
+		}
+		
+		btn1.onclick=function(){
+			speed=-2;
+		}
+		btn2.onclick=function(){
+			speed=2;
+		}
+		}
+
+	</script>
+</head>
+<body>
+	<div id="div1">
+	<marquee behavior=alternate>
+		<img src="img/0.jpg" alt="">
+		<img src="img/0.jpg" alt="">
+		<a style="font-size: 30px;color: white"><em>:</em></a>
+		<img src="img/0.jpg" alt="">
+		<img src="img/0.jpg" alt="">
+		<a style="font-size: 30px;color: white"><em>:</em></a>
+		<img src="img/0.jpg" alt="">
+		<img src="img/0.jpg" alt="">
+    </marquee>
+	</div>
+	<div id="div2">
+		<ul>
+			<li><img src="img2/1.jpg" alt=""></li>
+			<li><img src="img2/2.jpg" alt=""></li>
+			<li><img src="img2/3.jpg" alt=""></li>
+			<li><img src="img2/4.jpg" alt=""></li>
+			<li><img src="img2/5.jpg" alt=""></li>
+			<li><img src="img2/1.jpg" alt=""></li>
+			<li><img src="img2/2.jpg" alt=""></li>
+			<li><img src="img2/3.jpg" alt=""></li>
+			<li><img src="img2/4.jpg" alt=""></li>
+			<li><img src="img2/5.jpg" alt=""></li>
+		</ul>
+	</div>
+	<div id="div3">
+		<input type="button" name="" id="btn1" value="向左">
+	    <input type="button" name="" id="btn2" value="向右">
+	</div>
+</body>
+</html>
